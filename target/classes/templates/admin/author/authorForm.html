@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+<title>Create New Author</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h2>Add New Author</h2>
+		<br />
+
+		<form class="form-horizontal" th:object="${author}"
+			th:action="@{/admin/author/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<fieldset>
+
+				<!-- Text input-->
+				<div th:class="form-group"
+					th:classappend="${#fields.hasErrors('firstName')} ? 'has-error'">
+					<label class="col-md-4 control-label" for="FirstName">FirstName</label>
+					<div class="col-md-4">
+						<input id="FirstName" name="FirstName" type="text"
+							placeholder="First Name" class="form-control input-md"
+							th:field="*{firstName}" /> <span
+							th:if="${#fields.hasErrors('firstName')}"
+							th:errors="*{firstName}" th:class="help-block">FirstName
+							errors</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div th:class="form-group"
+					th:classappend="${#fields.hasErrors('lastName')} ? 'has-error'">
+					<label class="col-md-4 control-label" for="lastName">LastName</label>
+					<div class="col-md-4">
+						<input id="lastName" name="lastName" type="text"
+							placeholder="Last Name" class="form-control input-md"
+							th:field="*{lastName}" /> <span
+							th:if="${#fields.hasErrors('lastName')}"
+							th:errors="*{lastName}" th:class="help-block">lastName
+							errors</span>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div th:class="form-group"
+					th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+					<label class="col-md-4 control-label" for="email">Email:</label>
+					<div class="col-md-4">
+						<input id="email" name="email" type="text"
+							placeholder="Email" class="form-control input-md"
+							th:field="*{email}" /> <span
+							th:if="${#fields.hasErrors('email')}"
+							th:errors="*{email}" th:class="help-block">email 
+							errors</span>
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="AddAuthor"></label>
+					<div class="col-md-4">
+						<button type="submit" id="AddAuthor" name="AddAuthor" class="btn btn-primary">Add
+							New Author</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+	</div>
+
+</body>
+</html>

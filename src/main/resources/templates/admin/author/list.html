@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>List Authors</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+	<div th:if="${message}" class="alert alert-success role=alert">
+		<p th:text="${message}">success message</p>
+		</div>
+	
+    	<table class="table table-striped">
+			<thead> 
+				<tr> 
+					<th>#</th> 
+					<th>First Name</th> 
+					<th>Last Name</th> 
+					<th>Email</th> 
+					<th>Posts By Author</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr> 
+			</thead>
+			<tbody>
+				<tr th:each="author, iterationStatus : ${authors}">
+					<td th:text="${iterationStatus.count}">1</td>
+					<td th:text="${author.firstName}">First Name</td>
+					<td th:text="${author.lastName}">Last Name</td>
+					<td th:text="${author.email}">Email Address</td>
+					<td><a th:href="|/posts/byAuthor/${author.id}|">Posts By Author</a></td>
+					<td><a href="#" th:href="@{/admin/author/edit/} + ${author.id}">Edit</a></td>
+					<td><a href="#" th:href="@{/admin/author/delete/} + ${author.id}">Delete</a></td>
+					
+				</tr>
+			</tbody>
+		</table>
+
+		<a th:href="@{/admin/author/create}">Add New Author</a>
+		<br/><br/>
+
+	</div>
+	
+
+		
+</body>
+</html>
